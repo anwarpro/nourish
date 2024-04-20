@@ -46,7 +46,24 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun App() {
     val api = remember { GeminiApi() }
     val coroutineScope = rememberCoroutineScope()
-    var prompt by remember { mutableStateOf("") }
+    var prompt by remember {
+        mutableStateOf(
+            """
+        You are an expert in nutritionist where you need to see the food items from the image
+           and calculate the total calories, also provide the details of every food items with calories intake
+           is below format
+
+           1. Item 1 - no of calories
+           2. Item 2 - no of calories
+           ----
+           ----
+        Finally you can also mention whether the meal is healthy or not and also mention the
+        percentage split of the ratio of carbohydrates, fats, fibers, sugar and other important
+        things required in our diet
+    """.trimIndent()
+        )
+    }
+
     var selectedImageData by remember { mutableStateOf<ByteArray?>(null) }
     var content by remember { mutableStateOf("") }
     var showProgress by remember { mutableStateOf(false) }
